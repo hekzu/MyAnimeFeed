@@ -1,5 +1,7 @@
 from myanimelist import MyAnimeListAPI
+from argparse import ArgumentParser
 from kissanime import KissAnimeAPI
+from config import ARGUMENT_LIST
 
 
 def select_result(mal, result_list, anime):
@@ -22,7 +24,12 @@ def select_result(mal, result_list, anime):
 
 
 def main():
-    mal = MyAnimeListAPI("username")
+    arg_parser = ArgumentParser()
+    for arg in ARGUMENT_LIST:
+        arg_parser.add_argument(arg)
+    args = arg_parser.parse_args()
+
+    mal = MyAnimeListAPI(args.username)
     ka = KissAnimeAPI()
 
     currently_watching = mal.currently_watching()
