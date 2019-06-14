@@ -1,3 +1,3 @@
 ARGUMENT_LIST = [
-    "username"
+    "--username"
 ]

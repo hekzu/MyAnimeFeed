@@ -49,8 +49,12 @@ def main():
         results = ka.search(anime.title)
         selected = select_result(mal, results, anime)
         anime_info = ka.get_anime_info(selected)
-        latest_episode_number = anime_info.episodes[0].get_episode_number()
-        message_list.append("\"{0}\": Watched {1}, latest {2}".format(anime.title, anime.watched_episodes, latest_episode_number))
+        latest_episode = anime_info.episodes[0]
+        latest_episode_number = latest_episode.get_episode_number()
+        message_list.append("\"{0}\": Watched {1}, latest {2}\n{3}".format(anime.title,
+                                                                           anime.watched_episodes,
+                                                                           latest_episode_number,
+                                                                           latest_episode.url.decode('ascii')))
 
     create_popup(message_list)
 
