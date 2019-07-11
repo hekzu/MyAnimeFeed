@@ -5,6 +5,7 @@ class AnimeEntry(object):
     def __init__(self, raw):
         self.id = raw['mal_id']
         self.title = raw['title']
+        self.score= raw['score']
         try:
             self.watched_episodes = raw['watched_episodes']
         except KeyError:
@@ -30,6 +31,14 @@ class MyAnimeListAPI(object):
 
     def currently_watching(self):
         response = self._instance.user(username=self._user, request="animelist", argument="watching")
+        anime_list = []
+        for anime in response['anime']:
+            anime_list.append(AnimeEntry(anime))
+
+        return anime_list
+
+    def plan_to_watch(self):
+        response = self._instance.user(username=self._user, request="animelist", argument="plantowatch")
         anime_list = []
         for anime in response['anime']:
             anime_list.append(AnimeEntry(anime))
