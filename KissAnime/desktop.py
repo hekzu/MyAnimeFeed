@@ -197,7 +197,7 @@ class AnimeEpisodeInfoObject(object):
         try:
             return int(title[title.index("Episode") + len("Episode "):])
         except ValueError as e:
-            print("Error {0} on:".format(e.message), title)
+            print("Error {0} on:".format(e), title)
             return 0
 
     def get_title(self):
